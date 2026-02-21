@@ -7,7 +7,7 @@ import { z } from "zod";
 
 
 
-const FormComponnt = () => {
+const FormComponent = () => {
   const {
     register,
     handleSubmit,
@@ -71,4 +71,4 @@ const FormComponnt = () => {
   );
 };
 
-export default FormComponnt;
+export default FormComponent;

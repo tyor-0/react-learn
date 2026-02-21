@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
+import axiosInstance from "../../../../api/axiosInstance"
 
 export const useDeleteCar = () => {
 
@@ -18,7 +19,7 @@ export const useDeleteCar = () => {
 
         setIsDeleting(true)
         try {
-            const res  = await axios.delete(`http://localhost:3000/api/v1/cars/${id}`)
+            const res  = await axiosInstance.delete(`/cars/${id}`)
             console.log(res)
             alert("Car deleted successfully")
             navigate('/cars')

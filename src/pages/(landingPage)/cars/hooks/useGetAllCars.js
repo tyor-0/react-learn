@@ -1,53 +1,49 @@
-import { useEffect, useState } from "react"
-import axiosInstance from "../../../../api/axiosInstance"
+import axios from "axios";
+import { useState, useEffect } from "react"
+import axiosInstance from "../../../../api/axiosInstance";
 
-export const useGetAllCars = () => {
-  const [allCars, setAllCars] = useState([])
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
-  const [inpVal, setinpVal] = useState('')
-  const [search, setSearch] = useState('')
+ export const useGetAllCars = () => {
+    const [cars, setCars] = useState([]);
+    const [loading, setLoading] = useState(false)
+    const [query, setQuery] = useState('');
+    const [search, setSearch] = useState("")
+    const [error, setError] = useState(null)
 
-
-
-//   const search = searchParams.get("search") || ""
-
-  async function getAllCars() {
-    setLoading(true)
-    try {
-      const res = await axiosInstance.get(`/cars?search=${encodeURIComponent(search)}`)
-
-      setAllCars(res.data.allCars)
-    } catch (error) {
-      console.error(error)
-      setError(error.message || "Something went wrong")
-    } finally {
-      setLoading(false)
+    async function getAllCars(){
+        setLoading(true)
+         try {
+            const res = await axiosInstance.get(`/cars?search=${encodeURIComponent(search)}`)
+            console.log(res.data.allCars);
+            // setCars(res.data)
+            setCars(res.data.allCars);
+        } catch (error) {
+            console.log(error);
+            setError(error.message || "something went wrong")
+        } finally {
+            setLoading(false)
+        }
     }
-  }
 
-  function handleSearchChange(e){
-    const value = e.target.value
-    setinpVal(value)
+    function handleQuery(e){
+        const value = e.target.value
+        setQuery(value)
+    }
     
-  }
+    function handleSearch(){
+        setSearch(query)
+    }
 
-  function handleSearchClick(){
-    setSearch(inpVal)
-    
-  }
-
-  useEffect(() => {
+    useEffect(() => {
     getAllCars()
-  }, [search])
+}, [search]);
 
-  return {
-    allCars,
-    loading,
-    error,
-    inpVal,
-    getAllCars,
-    handleSearchChange,
-    handleSearchClick
-  }
+    return{
+        cars, 
+        loading, 
+        error,
+        handleQuery, 
+        handleSearch,
+        getAllCars,
+        query
+    }
 }

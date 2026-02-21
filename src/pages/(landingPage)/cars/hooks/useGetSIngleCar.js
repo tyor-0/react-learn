@@ -1,47 +1,30 @@
-
-import {
-    useEffect,
-    useState
-} from "react";
-import {
-    useParams
-} from "react-router-dom";
+import axios from "axios";
+import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom";
 import axiosInstance from "../../../../api/axiosInstance";
 
-export const useGetSIngleCar = () => {
-    const {
-        id
-    } = useParams()
-    const [singleCar, setSingleCar] = useState(null)
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(null)
+export const useGetSingleCar = () => {
+    const [car, setCar] = useState(null);
+    const [loading, setloading] = useState(false);
 
-
-    async function getSingleCar() {
-        setLoading(true)
+    async function getSingleCar(id){
+        setloading(true);
         try {
-            const res = await axiosInstance.get(`/cars/${id}`);
-            setSingleCar(res.data)
+            const car = await axiosInstance.get(`/cars/${id}`)
+            setCar(car.data)
         } catch (error) {
-            console.log(error)
-            setError(error.message)
-        } finally {
-            setLoading(false)
+            console.log("Error fetching car:", error);
+            
+        }finally{
+            setloading(false)
         }
     }
-
-
+    const id = useParams().id;
     useEffect(() => {
-        getSingleCar()
+        getSingleCar(id)
+    }, [id]);
 
-    }, [id])
-
-    return {
-        singleCar,
-        loading,
-        error,
-        getSingleCar
+    return{
+    car, loading, getSingleCar
     }
-
-
 }

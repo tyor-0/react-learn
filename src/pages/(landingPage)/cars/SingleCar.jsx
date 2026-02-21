@@ -1,60 +1,103 @@
 import React from "react";
-import { useGetSIngleCar } from "./hooks/useGetSIngleCar";
+import { useGetSingleCar } from "./Hooks/useGetSingleCar";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import DeleteCarCompo from "./DeleteCarCompo";
+import DeleteCar from "./DeleteCar";
 
 const SingleCar = () => {
-  const { singleCar, loading, error } = useGetSIngleCar();
+  const { car, loading } = useGetSingleCar();
+  const navigate = useNavigate();
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="text-lg font-semibold animate-pulse text-gray-600">
-          Loading car details...
+      <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100">
+        <div className="text-center">
+          <div className="mx-auto h-16 w-16 animate-spin rounded-full border-4 border-slate-300 border-t-slate-900"></div>
+          <p className="mt-4 text-lg text-slate-600">Loading car details...</p>
         </div>
       </div>
     );
   }
 
-  if (error) {
+  if (!car) {
     return (
-      <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="bg-red-100 text-red-600 px-6 py-4 rounded-lg shadow">
-          Error: {error}
-        </div>
+      <div className="flex min-h-screen items-center justify-center">
+        <p className="text-gray-500">Car not found</p>
       </div>
     );
   }
+
   return (
-    <div>
-      {singleCar && (
-        <div className="max-w-4xl mx-auto px-6 py-10">
+    <section className="min-h-screen bg-gray-50 px-4 py-12">
+      <div className="mx-auto max-w-5xl">
+        {/* Back button */}
+        <button
+          onClick={() => navigate('/cars')}
+          className="mb-6 text-sm font-medium text-indigo-600 hover:underline"
+        >
+          ← Back
+        </button>
 
-           <Link to={'/cars/' + singleCar._id + '/edit'}>
-            <button className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">
-              Edit Car
+        <div className="grid gap-10 md:grid-cols-2">
+          {/* Image */}
+          <div className="overflow-hidden rounded-2xl bg-white shadow-sm">
+            <img
+              src={car.image}
+              alt={`${car.brand} ${car.model}`}
+              className="h-full w-full object-cover"
+            />
+          </div>
+
+          {/* Details */}
+          <div className="rounded-2xl bg-white p-8 shadow-sm">
+            <div className="mb-4 flex items-center justify-between">
+              <h1 className="text-3xl font-bold text-gray-900">
+                {car.brand} {car.model}
+              </h1>
+
+              <span
+                className={`rounded-full px-3 py-1 text-xs font-medium ${
+                  car.isAvailable
+                    ? "bg-green-100 text-green-700"
+                    : "bg-red-100 text-red-700"
+                }`}
+              >
+                {car.isAvailable ? "Available" : "Unavailable"}
+              </span>
+            </div>
+
+            <div className="space-y-3 text-gray-700">
+              <p>
+                <span className="font-medium">Year:</span> {car.year}
+              </p>
+              <p>
+                <span className="font-medium">Color:</span> {car.color}
+              </p>
+              <p>
+                <span className="font-medium">Transmission:</span>{" "}
+                {car.transmission}
+              </p>
+              <p className="text-xl font-semibold text-gray-900">
+                ₦{Number(car.price).toLocaleString()}
+              </p>
+            </div>
+                <button
+              disabled={!car.isAvailable}
+              className="mt-8 w-full rounded-xl bg-indigo-600 py-3 text-sm font-semibold text-white transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:bg-gray-400"
+            >
+              {car.isAvailable ? "Book This Car" : "Not Available"}
             </button>
-
-            
-           
-           </Link>
-          <h2 className="text-3xl font-bold mb-6 text-gray-800">
-            {singleCar.title}
-          </h2>
-          <img
-            src={singleCar.image}
-            alt={singleCar.title}
-            className="w-full h-96 object-cover rounded-2xl mb-6"
-          />
-
-          <p className="text-gray-700 text-lg">{singleCar.description}</p>
-          <DeleteCarCompo/>
-           
+            <div className="flex gap-3 justify-center">
+              
+            <Link to={`/cars/${car._id}/edit`}>
+            <button className="mt-8 w-[200px] rounded-xl bg-indigo-600 py-3 text-sm font-semibold text-white transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:bg-gray-400"
+           >Update car</button></Link>
+            <span className="w-200px"><DeleteCar /></span>
+            </div>
+          </div>
         </div>
-      )}
-
-      
-    </div>
+      </div>
+    </section>
   );
 };
 

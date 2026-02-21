@@ -1,135 +1,132 @@
 import React from "react";
-import { useUpdateCar } from "./hooks/useUpdateCar";
+import { useUpdateCars } from "./Hooks/useUpdateCars";
 
-const EditCar = () => {
-  const { carData, setCarData, handleSubmit } = useUpdateCar();
+function EditCar() {
+  const { carData, setCarData, handleSubmit } = useUpdateCars();
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4 py-12">
-      <div className="w-full max-w-2xl bg-white shadow-xl rounded-2xl p-8">
-        <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">
-          Edit Car
-        </h2>
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4 py-10">
+      <div className="w-full max-w-2xl rounded-2xl bg-white shadow-sm border border-gray-100">
+        <div className="border-b border-gray-100 px-6 py-4">
+          <h2 className="text-xl font-semibold text-gray-800">
+            Edit Car Details
+          </h2>
+          <p className="text-sm text-gray-500">
+            Update the information for this car
+          </p>
+        </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Title */}
+        <form onSubmit={handleSubmit} className="p-6 space-y-5">
+          {/* Image */}
           <div>
-            <label
-              htmlFor="title"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
-              Title
-            </label>
-            <input
-              type="text"
-              id="title"
-              placeholder="Enter car title"
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"
-            value={carData.title}
-              onChange={(e) =>
-                setCarData({ ...carData, title: e.target.value })
-              }
-            />
-          </div>
-
-          {/* Category */}
-          <div>
-            <label
-              htmlFor="category"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
-              Category
-            </label>
-            <input
-              type="text"
-              id="category"
-              placeholder="SUV, Sedan, Electric..."
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"
-              value={carData.category}
-              onChange={(e) =>
-                setCarData({ ...carData, category: e.target.value })
-              }
-            />
-          </div>
-
-          {/* Description */}
-          <div>
-            <label
-              htmlFor="description"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
-              Description
-            </label>
-            <textarea
-              id="description"
-              rows="4"
-              placeholder="Write a short description..."
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition resize-none"
-              value={carData.description}
-              onChange={(e) =>
-                setCarData({ ...carData, description: e.target.value })
-              }
-            ></textarea>
-          </div>
-
-          {/* Price */}
-          <div>
-            <label
-              htmlFor="price"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
-              Price
-            </label>
-            <input
-              type="number"
-              id="price"
-              placeholder="Enter price"
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"
-              value={carData.price}
-              onChange={(e) =>
-                setCarData({ ...carData, price: e.target.value })
-              }
-            />
-          </div>
-
-          {/* Image URL */}
-          <div>
-            <label
-              htmlFor="image"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
+            <label className="block text-sm font-medium text-gray-600 mb-1">
               Image URL
             </label>
             <input
               type="text"
-              id="image"
-              placeholder="https://example.com/car.jpg"
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"
               value={carData.image}
               onChange={(e) =>
                 setCarData({ ...carData, image: e.target.value })
               }
+              className="w-full text-black rounded-lg border border-gray-300 px-4 py-2 text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none"
+              placeholder="https://example.com/car.jpg"
             />
           </div>
 
-          {/* Submit Button */}
-          <div className="pt-4">
-            <button
+          {/* Grid layout */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-600 mb-1">
+                Brand
+              </label>
+              <input
+                type="text"
+                value={carData.brand}
+                onChange={(e) =>
+                  setCarData({ ...carData, brand: e.target.value })
+                }
+                className="w-full text-black rounded-lg border border-gray-300 px-4 py-2 text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none"
+              />
+            </div>
 
-              type="submit"
-              className="w-full bg-indigo-600 text-white py-3 rounded-xl font-semibold hover:bg-indigo-700 transition duration-300 shadow-md hover:shadow-lg"
-            >
-              Update Car
-            </button>
+            <div>
+              <label className="block text-sm font-medium text-gray-600 mb-1">
+                Model
+              </label>
+              <input
+                type="text"
+                value={carData.model}
+                onChange={(e) =>
+                  setCarData({ ...carData, model: e.target.value })
+                }
+                className="w-full text-black rounded-lg border border-gray-300 px-4 py-2 text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none"
+              />
+            </div>
 
-                <button
+            <div>
+              <label className="block text-sm font-medium text-gray-600 mb-1">
+                Year
+              </label>
+              <input
+                type="number"
+                value={carData.year}
+                onChange={(e) =>
+                  setCarData({ ...carData, year: e.target.value })
+                }
+                className="w-full text-black rounded-lg border border-gray-300 px-4 py-2 text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none"
+              />
+            </div>
 
-              type="submit"
-              className="w-full bg-red-600 text-white py-3 rounded-xl font-semibold hover:bg-indigo-700 transition duration-300 shadow-md hover:shadow-lg"
-            >
-              Edit Car
-            </button>
+            <div>
+              <label className="block text-sm font-medium text-gray-600 mb-1">
+                Price
+              </label>
+              <input
+                type="number"
+                value={carData.price}
+                onChange={(e) =>
+                  setCarData({ ...carData, price: e.target.value })
+                }
+                className="w-full text-black rounded-lg border border-gray-300 px-4 py-2 text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none"
+              />
+            </div>
           </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-600 mb-1">
+              Color
+            </label>
+            <input
+              type="text"
+              value={carData.color}
+              onChange={(e) =>
+                setCarData({ ...carData, color: e.target.value })
+              }
+              className="w-full text-black rounded-lg border border-gray-300 px-4 py-2 text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-600 mb-1">
+              Transmission
+            </label>
+            <input
+              type="text"
+              value={carData.transmission}
+              onChange={(e) =>
+                setCarData({ ...carData, transmission: e.target.value })
+              }
+              className="w-full text-black rounded-lg border border-gray-300 px-4 py-2 text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="mt-6 w-full rounded-xl bg-indigo-600 py-3 text-sm font-medium text-white hover:bg-indigo-700 transition focus:ring-4 focus:ring-indigo-200"
+            
+          >
+            Update Car
+          </button>
         </form>
       </div>
     </div>
