@@ -1,10 +1,10 @@
 import React from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { registerSchema } from '../../../validation/registerSchema'
+import { registerSchema } from '../../validation/registerSchema'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import axiosInstance from '../../../api/axiosInstance'
+import axiosInstance from '../../api/axiosInstance'
 
 const Register = () => {
 
@@ -24,11 +24,11 @@ const Register = () => {
         console.log(res)
         localStorage.setItem('token', res.data.token)
         alert('Registration successful!')
-      navigate('/')
+      navigate('/auth')
 
     } catch (error) {
       alert(error.response?.data?.message || 'Registration failed. Please try again.')
-      console.log(error)
+      console.log(error.message)
       
     }finally{
       setLoading(false)
@@ -145,7 +145,7 @@ const Register = () => {
 
         <p className="text-center py-8">
           Already have an account?{" "}
-          <Link to="/auth/signin" className="text-indigo-600 hover:underline">
+          <Link to="/auth" className="text-indigo-600 hover:underline">
             Sign in
           </Link>
         </p>

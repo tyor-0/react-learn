@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 const Navbar = () => {
   return (
     <div>
-
         <nav class="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 border-b border-gray-300 bg-white relative transition-all">
     <a href="https://prebuiltui.com">
         <img class="h-9" src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/dummyLogo/dummyLogoColored.svg" alt="dummyLogoColored"/>

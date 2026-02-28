@@ -2,7 +2,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import axiosInstance from "../../../api/axiosInstance";
+import axiosInstance from "../../api/axiosInstance";
+import { useNavigate } from "react-router-dom";
 
 const signinSchema = z.object({
     email: z.string().email("Enter a valid email"),
@@ -25,6 +26,7 @@ export const useLogin = () => {
             remember: false,
         },
     });
+    const navigate = useNavigate()
 
     const onSubmit = async (data) => {
         setIsSubmitting(true)
@@ -33,6 +35,9 @@ export const useLogin = () => {
             const res = await axiosInstance.post('/auth/login', data)
             console.log(res)
             localStorage.setItem('token', res.data.token)
+                alert('Login successful!')
+                navigate('/dashboard')
+
         } catch (error) {
             console.log(error)
             alert(error.response?.data?.message || 'Login failed. Please try again.')

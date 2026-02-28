@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "../../../../api/axiosInstance";
+import axiosInstance from "../../../api/axiosInstance";
 import { set } from "zod";
 
 export const useCreateCars = () => {

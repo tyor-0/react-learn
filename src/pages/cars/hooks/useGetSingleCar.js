@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
-import axiosInstance from "../../../../api/axiosInstance";
+import axiosInstance from "../../../api/axiosInstance";
 
 export const useGetSingleCar = () => {
     const [car, setCar] = useState(null);

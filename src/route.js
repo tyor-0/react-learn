@@ -3,29 +3,37 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 import { createBrowserRouter } from "react-router-dom";
-import Home from "./pages/(landingPage)/Home";
-import LandingPageLayout from "./pages/(landingPage)/landingPageLayout";
-import About from "./pages/(landingPage)/About";
+import Home from "./pages/Home";
+import LandingPageLayout from "./pages/landingPageLayout";
+import About from "./pages/About";
 
-import AuthComponent from "./pages/(landingPage)/Auth/AuthCompo";
-import Login from "./pages/(landingPage)/Auth/Signin";
-import Register from "./pages/(landingPage)/Auth/Register";
+import AuthComponent from "./pages/Auth/AuthCompo";
+import Login from "./pages/Auth/Signin";
+import Register from "./pages/Auth/Register";
 
-import Blogs from "./pages/(landingPage)/blogs";
-import CreateBlog from "./pages/(landingPage)/blogs/CreateBlog";
-import SingleBlog from "./pages/(landingPage)/blogs/SingleBlog";
-import EditBlog from "./pages/(landingPage)/blogs/EditBlog";
+import Blogs from "./pages/blogs";
+import CreateBlog from "./pages/blogs/CreateBlog";
+import SingleBlog from "./pages/blogs/SingleBlog";
+import EditBlog from "./pages/blogs/EditBlog";
 
-import CreateCar from "./pages/(landingPage)/cars/Createcar";
-import Cars from "./pages/(landingPage)/cars/index";
-import SingleCar from "./pages/(landingPage)/cars/SingleCar";
-import EditCar from "./pages/(landingPage)/cars/EditCar";
-import DeleteCar from "./pages/(landingPage)/cars/DeleteCar";
-import SearchCar from "./pages/(landingPage)/cars/SearchCar";
+import CreateCar from "./pages/cars/Createcar";
+import Cars from "./pages/cars/index";
+import SingleCar from "./pages/cars/SingleCar";
+import EditCar from "./pages/cars/EditCar";
+import DeleteCar from "./pages/cars/DeleteCar";
+import SearchCar from "./pages/cars/SearchCar";
 
+import FormComponent from "./pages/form/index";
+import Signin from "./pages/Auth/Signin";
+import DashboardLayout from "./pages/dashboard/DashboardLayout";
+import Dashboard from "./pages/dashboard";
+import UsersProducts from "./pages/dashboard/UsersProducts/index";
+import CreateProduct from "./pages/dashboard/UsersProducts/CreateProduct";
 
-import FormComponent from "./pages/(landingPage)/form/index";
-
+import AdminLayout from "./pages/admin/AdminLayout";
+import Products from "./pages/admin/Products";
+import Users from "./pages/admin/Users";
+import AdminLandingPage from "./pages/admin";
 
 
 export const router = createBrowserRouter([
@@ -46,18 +54,36 @@ export const router = createBrowserRouter([
             { path: "cars/search", Component: SearchCar },
             { path: "cars/:id", Component: SingleCar },
             { path: "cars/:id/edit", Component: EditCar },
-
-
         ]
-
     },
 
     {
         path: '/auth',
         Component: AuthComponent,
         children: [
-            { index: true, Component: Login },
-            { path: 'register', Component: Register }
+            { index: true, Component: Signin },
+            { path: 'register', Component: Register },
+            // { path: 'signin', Component: Signin },
+        ]
+    },
+
+    {
+        path: '/dashboard',
+        Component: DashboardLayout,
+        children: [
+            { index: true, Component: Dashboard },
+            { path: '/dashboard/products', Component: UsersProducts },
+            { path: '/dashboard/add-product', Component: CreateProduct },
+        ]
+    },
+
+    {
+        path: '/admin',
+        Component: AdminLayout,
+        children: [
+            { index: true, Component: AdminLandingPage },
+            { path: 'users', Component: Users },
+            { path: 'products', Component: Products },
         ]
     }
-])
+]);

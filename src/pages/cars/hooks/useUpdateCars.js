@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useGetSingleCar } from "./useGetSingleCar";
-import axiosInstance from "../../../../api/axiosInstance";
+import axiosInstance from "../../../api/axiosInstance";
 
 export const useUpdateCars = () => {
   const { car } = useGetSingleCar();

@@ -50,7 +50,7 @@ export function Sidebar() {
         localStorage.removeItem("token"); // Remove token from localStorage
         // Clear user session logic here (e.g., remove token, clear state, etc.)
         setCurrentUser(null);
-        navigate("/auth/signin"); // Redirect to login page after logout
+        navigate("/auth"); // Redirect to login page after logout
     }; 
     return (
         <aside className="w-64 bg-white h-screen shadow-md flex flex-col justify-between">
@@ -71,7 +71,8 @@ export function Sidebar() {
                     onClick={handleLogout}
                 >
                     Logout
-                </button>            </div>
+                </button>            
+                </div>
         </aside>
     );
 }

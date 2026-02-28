@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useDebounce } from "./useDebounced";
-import axiosInstance from "../../../api/axiosInstance";
+import axiosInstance from "../../api/axiosInstance";
 
 
 export const useGetAllBlogs = ()=>{

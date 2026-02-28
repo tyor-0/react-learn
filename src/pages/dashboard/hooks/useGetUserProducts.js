@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import axiosInstance from "../../../Api/Instance"
+import axiosInstance from "../../../api/axiosInstance"
 
 export const useGetUserProducts = ()=>{
        const [userProducts, setUserProducts] = useState([])

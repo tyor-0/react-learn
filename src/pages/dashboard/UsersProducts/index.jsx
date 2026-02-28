@@ -1,21 +1,34 @@
+import { useNavigate } from "react-router-dom"
 import { useGetUserProducts } from "../hooks/useGetUserProducts"
 
 export default function UsersProducts() {
+    const navigate = useNavigate();
     const { userProducts, loading, error } = useGetUserProducts();
 
     return (
         <div className="p-6 min-h-screen bg-gray-50">
-            <h1 className="text-3xl font-bold mb-8 text-center text-gray-800">User's Products</h1>
+            <div className="flex justify-between items-center mb-8">
+                <h1 className="text-3xl font-bold text-gray-800">User's Products</h1>
+                <button
+                    onClick={() => navigate("/dashboard/add-product")}
+                    className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg transition-colors duration-200 font-semibold shadow-md"
+                >
+                    + Create Product
+                </button>
+            </div>
+
             {loading && (
                 <div className="flex justify-center items-center h-32">
                     <span className="text-lg text-gray-500">Loading...</span>
                 </div>
             )}
+
             {error && (
                 <div className="flex justify-center items-center h-32">
                     <span className="text-red-500 font-semibold">{error.message || 'Error loading products.'}</span>
                 </div>
             )}
+
             {!loading && !error && userProducts && userProducts.length > 0 ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                     {userProducts.map((product) => (

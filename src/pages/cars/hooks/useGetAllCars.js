@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react"
-import axiosInstance from "../../../../api/axiosInstance";
+import axiosInstance from "../../../api/axiosInstance";
 
  export const useGetAllCars = () => {
     const [cars, setCars] = useState([]);
