@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { createBrowserRouter } from "react-router-dom";
 
 import Home from "./pages/Home";
-import LandingPageLayout from "./pages/landingPageLayout";
+import LandingPageLayout from "./pages/LandingPageLayout";
 import About from "./pages/About";
 
 import AuthComponent from "./pages/Auth/AuthCompo";
