@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-
 import { createBrowserRouter } from "react-router-dom";
+
 import Home from "./pages/Home";
 import LandingPageLayout from "./pages/landingPageLayout";
 import About from "./pages/About";
