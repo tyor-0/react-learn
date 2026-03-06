@@ -1,8 +1,8 @@
 import React from "react";
-import { useGetSingleCar } from "./Hooks/useGetSingleCar";
+import { useGetSingleCar } from "../../hooks/useGetSingleCar";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import DeleteCar from "./DeleteCar";
+import DeleteCar from "../cars/DeleteCar";
 
 const SingleCar = () => {
   const { car, loading } = useGetSingleCar();

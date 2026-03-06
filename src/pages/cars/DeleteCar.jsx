@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDeleteCar } from './Hooks/useDeleteCar';
+import { useDeleteCar } from '../../hooks/useDeleteCar';
 
 const DeleteCar = () => {
     const {deleteCar, isDeleting} = useDeleteCar();

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useGetAllCars } from './hooks/useGetAllCars'
+import { useGetAllCars } from '../../hooks/useGetAllCars'
 import { useNavigate } from 'react-router-dom';
 
 function GetAllCars() {

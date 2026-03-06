@@ -1,5 +1,5 @@
 import React from "react";
-import { useCreateProduct } from "../hooks/useCreateProduct";
+import { useCreateProduct } from "../../../hooks/useCreateProduct";
 import { Link } from "react-router-dom";
 
 const CreateProduct = () => {

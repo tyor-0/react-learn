@@ -1,5 +1,5 @@
 import React from "react";
-import { useUpdateCars } from "./Hooks/useUpdateCars";
+import { useUpdateCars } from "../../hooks/useUpdateCars";
 
 function EditCar() {
   const { carData, setCarData, handleSubmit } = useUpdateCars();

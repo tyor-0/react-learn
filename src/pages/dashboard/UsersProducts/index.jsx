@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import { useGetUserProducts } from "../hooks/useGetUserProducts"
+import { useGetUserProducts } from "../../../hooks/useGetUserProducts"
 
 export default function UsersProducts() {
     const navigate = useNavigate();
